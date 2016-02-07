@@ -22,11 +22,11 @@ Add it in your gemfile
 Create a configuration file and put it in your initializers `config/initializers/layzr.rb`
 
 
-      Layzr::Rails.configure do |config|
-        config.placeholder = "/assets/some-default-image.png"
-      end
+    Layzr::Rails.configure do |config|
+      config.placeholder = "/assets/some-default-image.png"
+    end
 
-Require layzr library in application.js ie:
+Add Layzr js and require layzr library in application.js ie:
 
     //= require layzr
 
