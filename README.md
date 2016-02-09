@@ -1,13 +1,13 @@
 ## Layzr-Rails
 
-This project integrates the jQuery [Layzr Plugin](https://github.com/callmecavs/layzr.js)
+This project integrates the pure vanilla JS [Layzr Plugin](https://github.com/callmecavs/layzr.js)
 for Rails `image_tag` helpers
 
-### What's jQuery Layzr Plugin?
+### What's Layzr Plugin?
 
 From the project page:
 
-*A small, fast, and modern library for lazy loading images.*
+*A small, fast, and modern library for lazy loading images, its written in vanilla JS so don't need any Jquery or other js library.*
 
 See [live demo](http://callmecavs.com/layzr.js/)
 
