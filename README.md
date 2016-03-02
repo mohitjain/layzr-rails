@@ -1,7 +1,6 @@
 ## Layzr-Rails
 
-This project integrates the pure vanilla JS [Layzr Plugin](https://github.com/callmecavs/layzr.js)
-for Rails `image_tag` helpers
+This project integrates the pure vanilla JS [Layzr Plugin](https://github.com/callmecavs/layzr.js) for Rails `image_tag` helpers
 
 ### What's Layzr Plugin?
 
@@ -9,7 +8,7 @@ From the project page:
 
 *A small, fast, and modern library for lazy loading images, its written in vanilla JS so don't need any Jquery or other js library.*
 
-See [live demo](http://callmecavs.com/layzr.js/)
+See [live demo](http://callmecavs.com/layzr.js/).
 
 ## Documentation
 
@@ -21,7 +20,6 @@ Add it in your gemfile
 
 Create a configuration file and put it in your initializers `config/initializers/layzr.rb`
 
-
     Layzr::Rails.configure do |config|
       config.placeholder = "/assets/some-default-image.png"
     end
@@ -30,7 +28,7 @@ Add Layzr js and require layzr library in application.js ie:
 
     //= require layzr
 
-And place the jvascript code:
+And place the javascript code:
 
     $(document).ready(function() {
        const instance = Layzr()
@@ -51,7 +49,6 @@ Equals:
 
 ### More options
 
-  
     <%= image_tag "normal.jpg", lazy: true, layzr: { retina: "retina.jpg", srcset: "small.jpg 320w, medium.jpg 768w, large.jpg 1024w"} %>
 
 Equals:
