@@ -30,7 +30,7 @@ Add Layzr js and require layzr library in application.js ie:
 
     //= require layzr
 
-And place the jvascript code:
+And place the javascript code:
 
     $(document).ready(function() {
        const instance = Layzr()
