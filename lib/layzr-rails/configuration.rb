@@ -9,15 +9,7 @@ module Layzr
     #     c.placeholder  = "/public/img/grey.gif"
     #   end
     class Configuration
-
-      def placeholder
-        @placeholder
-      end
-
-      def placeholder=(new_placeholder)
-        @placeholder = new_placeholder
-      end
-
+      attr_accessor :placeholder
     end
   end
 end
