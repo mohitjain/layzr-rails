@@ -16,23 +16,31 @@ See [live demo](http://callmecavs.com/layzr.js/).
 
 Add it in your gemfile
 
-    gem 'layzr-rails'
+```ruby
+gem 'layzr-rails'
+```
 
 Create a configuration file and put it in your initializers `config/initializers/layzr.rb`
 
-    Layzr::Rails.configure do |config|
-      config.placeholder = "/assets/some-default-image.png"
-    end
+```ruby
+Layzr::Rails.configure do |config|
+  config.placeholder = "/assets/some-default-image.png"
+end
+```
 
 Add Layzr js and require layzr library in application.js ie:
 
-    //= require layzr
+```sass
+//= require layzr
+```
 
 And place the javascript code:
 
-    $(document).ready(function() {
-       const instance = Layzr()
-    });
+```js
+$(document).ready(function() {
+   const instance = Layzr()
+});
+```
 
 ### Features
 
@@ -41,19 +49,27 @@ And place the javascript code:
 
 ### Example
 
-    <%= image_tag "kittenz.png", alt: "OMG a cat!", lazy: true %>
+```erb
+<%= image_tag "kittenz.png", alt: "OMG a cat!", lazy: true %>
+```
 
 Equals:
 
-    <img alt="OMG a cat!" data-normal="/images/kittenz.png" src="/assets/some-default-image.png">
+```html
+<img alt="OMG a cat!" data-normal="/images/kittenz.png" src="/assets/some-default-image.png">
+```
 
 ### More options
 
-    <%= image_tag "normal.jpg", lazy: true, layzr: { retina: "retina.jpg", srcset: "small.jpg 320w, medium.jpg 768w, large.jpg 1024w"} %>
+```erb
+<%= image_tag "normal.jpg", lazy: true, layzr: { retina: "retina.jpg", srcset: "small.jpg 320w, medium.jpg 768w, large.jpg 1024w"} %>
+```
 
 Equals:
 
-    <img src="/assets/some-default-image.png" data-normal="normal.jpg" data-retina="retina.jpg" data-srcset="small.jpg 320w, medium.jpg 768w, large.jpg 1024w">  
+```html
+<img src="/assets/some-default-image.png" data-normal="normal.jpg" data-retina="retina.jpg" data-srcset="small.jpg 320w, medium.jpg 768w, large.jpg 1024w">  
+```
 
 
 ## License
