@@ -1,26 +1,23 @@
-## Layzr-Rails
+# layzr-rails
 
-This project integrates the pure vanilla JS [Layzr Plugin](https://github.com/callmecavs/layzr.js) for Rails `image_tag` helpers
+Lazy-load images in Rails by adding `lazy: true` to `image_tag`.
 
-### What's Layzr Plugin?
+The gem rewrites the `<img>` tag so the real image sits in a `data-` attribute and the browser first loads a small
+placeholder. [Layzr.js](https://github.com/callmecavs/layzr.js), a small dependency-free lazy-loading library, swaps
+the real image in as it scrolls into view.
 
-From the project page:
+> **Version note.** This gem writes the attribute names of **Layzr.js 1.x** (`data-normal`, `data-retina`,
+> `data-srcset`). Layzr.js 2 uses different attribute names, so use 1.x with this gem. The gem does not bundle the
+> JavaScript: add Layzr.js to your app yourself. It was written for Rails 3.1 and later and has not been tested
+> against recent Rails releases.
 
-*A small, fast, and modern library for lazy loading images, its written in vanilla JS so don't need any Jquery or other js library.*
-
-See [live demo](http://callmecavs.com/layzr.js/).
-
-## Documentation
-
-### Installation
-
-Add it in your gemfile
+## Install
 
 ```ruby
 gem 'layzr-rails'
 ```
 
-Create a configuration file and put it in your initializers `config/initializers/layzr.rb`
+Set the placeholder image shown before the real one loads, in `config/initializers/layzr.rb`:
 
 ```ruby
 Layzr::Rails.configure do |config|
@@ -28,50 +25,46 @@ Layzr::Rails.configure do |config|
 end
 ```
 
-Add Layzr js and require layzr library in application.js ie:
-
-```sass
-//= require layzr
-```
-
-And place the javascript code:
+Load Layzr.js 1.x in your page and start it:
 
 ```js
-$(document).ready(function() {
-   const instance = Layzr()
-});
+const instance = Layzr()
 ```
 
-### Features
-
-* Add `lazy: true` option to Rails `image_tag` helpers to render layzr-friendly img tags.
-* Simple (really). That's pretty much it.
-
-### Example
+## Use
 
 ```erb
 <%= image_tag "kittenz.png", alt: "OMG a cat!", lazy: true %>
 ```
 
-Equals:
+renders
 
 ```html
 <img alt="OMG a cat!" data-normal="/images/kittenz.png" src="/assets/some-default-image.png">
 ```
 
-### More options
+Images without `lazy: true` render exactly as before.
+
+### Retina and responsive images
 
 ```erb
-<%= image_tag "normal.jpg", lazy: true, layzr: { retina: "retina.jpg", srcset: "small.jpg 320w, medium.jpg 768w, large.jpg 1024w"} %>
+<%= image_tag "normal.jpg", lazy: true,
+      layzr: { retina: "retina.jpg", srcset: "small.jpg 320w, medium.jpg 768w, large.jpg 1024w" } %>
 ```
 
-Equals:
+renders
 
 ```html
-<img src="/assets/some-default-image.png" data-normal="normal.jpg" data-retina="retina.jpg" data-srcset="small.jpg 320w, medium.jpg 768w, large.jpg 1024w">  
+<img src="/assets/some-default-image.png" data-normal="normal.jpg" data-retina="retina.jpg"
+     data-srcset="small.jpg 320w, medium.jpg 768w, large.jpg 1024w">
 ```
 
+## How it works
+
+The gem wraps Rails' `image_tag` helper. For a lazy image it moves the original `src` into `data-normal`, adds
+`data-retina` and `data-srcset` when you pass them, and points `src` at your placeholder. Nokogiri is used to edit the
+tag.
 
 ## License
 
-Layzr-Rails is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+[MIT](MIT-LICENSE).
